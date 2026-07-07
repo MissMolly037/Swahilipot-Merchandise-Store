@@ -220,6 +220,24 @@
   color: var(--dark-gray);
 }
 
+.order-card__receipt {
+  padding: 12px 18px 16px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.order-card__receipt a,
+.order-card__receipt button {
+  font-size: 0.82rem;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
 .order-card__footer {
   border-top: 1px solid var(--border);
   padding: 12px 18px;

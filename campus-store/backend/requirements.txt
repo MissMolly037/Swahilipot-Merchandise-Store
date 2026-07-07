@@ -6,3 +6,4 @@ django-filter
 Pillow
 python-dotenv
 gunicorn
+reportlab
