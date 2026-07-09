@@ -65,3 +65,13 @@ export const orderService = {
 	downloadReceipt: (id) =>
 		api.get(`/orders/${id}/receipt/`, { responseType: "blob" }),
 };
+
+// Team
+export const teamService = {
+	getAll: () => api.get("/team/"),
+};
+
+// Contact
+export const contactService = {
+	send: (data) => api.post("/contact/", data),
+};

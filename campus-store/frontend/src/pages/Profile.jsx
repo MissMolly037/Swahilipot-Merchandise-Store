@@ -8,6 +8,9 @@ import {
 	FiSave,
 	FiDownload,
 	FiFileText,
+	FiTruck,
+	FiCheck,
+	FiXCircle,
 } from "react-icons/fi";
 import toast from "react-hot-toast";
 import { useAuth } from "../context/AuthContext";
@@ -24,6 +27,53 @@ const STATUS_COLORS = {
 	cancelled: "#c62828",
 };
 
+const ORDER_STATUS_STEPS = [
+	{ key: "pending", label: "Order Placed" },
+	{ key: "processing", label: "Processing" },
+	{ key: "shipped", label: "Shipped" },
+	{ key: "delivered", label: "Delivered" },
+];
+
+const OrderTimeline = ({ status, createdAt }) => {
+	const currentIndex = ORDER_STATUS_STEPS.findIndex((s) => s.key === status);
+
+	return (
+		<div className="order-timeline">
+			{ORDER_STATUS_STEPS.map((step, index) => {
+				const isCompleted = index <= currentIndex;
+				const isCurrent = index === currentIndex;
+				return (
+					<div
+						key={step.key}
+						className={`order-timeline__step${
+							isCompleted ? " completed" : ""
+						}${isCurrent ? " current" : ""}`}>
+						<div className="order-timeline__marker">
+							{isCompleted && <FiCheck size={12} />}
+						</div>
+						<div className="order-timeline__content">
+							<span className="order-timeline__label">{step.label}</span>
+							<span className="order-timeline__date">
+								{index === 0
+									? new Date(createdAt).toLocaleString("en-GH", {
+											year: "numeric",
+											month: "short",
+											day: "numeric",
+											hour: "2-digit",
+											minute: "2-digit",
+										})
+									: isCompleted
+										? "Completed"
+										: "Pending"}
+							</span>
+						</div>
+					</div>
+				);
+			})}
+		</div>
+	);
+};
+
 const Profile = () => {
 	const { user, updateUser } = useAuth();
 	const [searchParams] = useSearchParams();
@@ -31,6 +81,7 @@ const Profile = () => {
 	const [orders, setOrders] = useState([]);
 	const [ordersLoading, setOrdersLoading] = useState(false);
 	const [downloadingId, setDownloadingId] = useState(null);
+	const [expandedOrders, setExpandedOrders] = useState({});
 	const [editing, setEditing] = useState(false);
 	const [form, setForm] = useState({
 		full_name: user?.full_name || "",
@@ -68,6 +119,10 @@ const Profile = () => {
 		} finally {
 			setSaving(false);
 		}
+	};
+
+	const toggleTracking = (orderId) => {
+		setExpandedOrders((prev) => ({ ...prev, [orderId]: !prev[orderId] }));
 	};
 
 	const handleDownloadReceipt = async (orderId) => {
@@ -277,6 +332,31 @@ const Profile = () => {
 														</span>
 													</div>
 												))}
+											</div>
+											<div className="order-card__tracking">
+												{order.status === "cancelled" ? (
+													<div className="order-card__cancelled">
+														<FiXCircle size={14} /> This order was cancelled
+													</div>
+												) : (
+													<>
+														<button
+															type="button"
+															className="order-card__tracking-toggle"
+															onClick={() => toggleTracking(order.id)}>
+															<FiTruck size={14} />
+															{expandedOrders[order.id]
+																? "Hide Tracking"
+																: "Track Order"}
+														</button>
+														{expandedOrders[order.id] && (
+															<OrderTimeline
+																status={order.status}
+																createdAt={order.created_at}
+															/>
+														)}
+													</>
+												)}
 											</div>
 											<div className="order-card__footer">
 												<span>Delivery to: {order.delivery_location}</span>

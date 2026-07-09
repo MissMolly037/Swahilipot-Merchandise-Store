@@ -17,9 +17,77 @@
   display: grid;
   grid-template-columns: 1fr 360px;
   gap: 32px;
-  padding-top: 40px;
+  padding-top: 24px;
   padding-bottom: 64px;
   align-items: start;
+}
+
+/* Stepper */
+.checkout-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 28px;
+  gap: 0;
+}
+
+.checkout-stepper__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.checkout-stepper__circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: var(--off-white);
+  color: var(--text-muted);
+  border: 2px solid var(--off-white);
+  transition: all 0.2s ease;
+}
+
+.checkout-stepper__label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.checkout-stepper__item.is-active .checkout-stepper__circle {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--white);
+}
+
+.checkout-stepper__item.is-active .checkout-stepper__label {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.checkout-stepper__item.is-done .checkout-stepper__circle {
+  background: var(--success);
+  border-color: var(--success);
+  color: var(--white);
+}
+
+.checkout-stepper__item.is-done .checkout-stepper__label {
+  color: var(--text-color, #333);
+}
+
+.checkout-stepper__line {
+  width: 64px;
+  height: 2px;
+  background: var(--off-white);
+  margin: 0 12px;
+}
+
+.checkout-stepper__item.is-done .checkout-stepper__line {
+  background: var(--success);
 }
 
 .checkout-form__section-title {
@@ -57,6 +125,131 @@
 .checkout-form__submit:disabled {
   opacity: 0.65;
   cursor: not-allowed;
+}
+
+.checkout-form__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 20px;
+  transition: color 0.15s ease;
+}
+
+.checkout-form__back:hover {
+  color: var(--primary);
+}
+
+/* Payment methods */
+.payment-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.payment-method {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 14px 16px;
+  border: 1.5px solid var(--off-white);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.payment-method:hover {
+  border-color: rgba(0,0,0,0.15);
+}
+
+.payment-method.is-selected {
+  border-color: var(--primary);
+  background: rgba(0,0,0,0.02);
+}
+
+.payment-method__icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--off-white);
+  color: var(--primary);
+}
+
+.payment-method.is-selected .payment-method__icon {
+  background: var(--primary);
+  color: var(--white);
+}
+
+.payment-method__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.payment-method__text strong {
+  font-size: 0.95rem;
+}
+
+.payment-method__text small {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.payment-method__radio {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--off-white);
+  flex-shrink: 0;
+  position: relative;
+}
+
+.payment-method.is-selected .payment-method__radio {
+  border-color: var(--primary);
+}
+
+.payment-method.is-selected .payment-method__radio::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+.payment-detail {
+  background: var(--off-white);
+  border-radius: var(--radius-sm);
+  padding: 20px;
+  margin-bottom: 8px;
+}
+
+.payment-detail__hint {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+.checkout-form__submit {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .checkout-page__sidebar {
@@ -129,4 +322,6 @@
   .checkout-page__sidebar { position: static; }
   .checkout-form__grid { grid-template-columns: 1fr; }
   .form-group--full { grid-column: auto; }
+  .checkout-stepper__line { width: 32px; margin: 0 6px; }
+  .checkout-stepper__label { display: none; }
 }

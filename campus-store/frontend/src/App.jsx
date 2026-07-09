@@ -19,6 +19,8 @@ import Checkout from "./pages/Checkout";
 import Profile from "./pages/Profile";
 import Wishlist from "./pages/Wishlist";
 import Receipt from "./pages/Receipt";
+import Contact from "./pages/Contact";
+import Team from "./pages/Team";
 import NotFound from "./pages/NotFound";
 import "./App.css";
 
@@ -54,6 +56,8 @@ const App = () => (
 							<Route path="/login" element={<Login />} />
 							<Route path="/login-flip" element={<LoginFlipCard />} />
 							<Route path="/register" element={<Register />} />
+							<Route path="/contact" element={<Contact />} />
+							<Route path="/team" element={<Team />} />
 							<Route
 								path="/checkout"
 								element={

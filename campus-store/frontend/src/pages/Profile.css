@@ -220,6 +220,122 @@
   color: var(--dark-gray);
 }
 
+/* Order Tracking */
+.order-card__tracking {
+  padding: 0 18px 14px;
+}
+
+.order-card__tracking-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--primary);
+  background: var(--off-white);
+  border: 1px solid var(--border);
+  padding: 7px 14px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.order-card__tracking-toggle:hover {
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+}
+
+.order-card__cancelled {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--error, #c62828);
+}
+
+.order-timeline {
+  margin-top: 16px;
+  padding-left: 4px;
+}
+
+.order-timeline__step {
+  position: relative;
+  display: flex;
+  gap: 14px;
+  padding-bottom: 20px;
+}
+
+.order-timeline__step:last-child {
+  padding-bottom: 0;
+}
+
+.order-timeline__step::before {
+  content: '';
+  position: absolute;
+  left: 11px;
+  top: 24px;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+
+.order-timeline__step:last-child::before {
+  display: none;
+}
+
+.order-timeline__step.completed::before {
+  background: var(--accent);
+}
+
+.order-timeline__marker {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  background: var(--white);
+  z-index: 1;
+}
+
+.order-timeline__step.completed .order-timeline__marker {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--primary);
+}
+
+.order-timeline__step.current .order-timeline__marker {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
+}
+
+.order-timeline__content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: 2px;
+}
+
+.order-timeline__label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--dark-gray);
+}
+
+.order-timeline__step.completed .order-timeline__label {
+  color: var(--primary);
+}
+
+.order-timeline__date {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
 .order-card__receipt {
   padding: 12px 18px 16px;
   border-top: 1px solid var(--border);

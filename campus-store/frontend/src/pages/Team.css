@@ -1,0 +1,222 @@
+/* =============================================
+   TEAM — matches navbar / contact design language
+   ============================================= */
+
+.team {
+  padding: 64px 0 96px;
+}
+
+/* ── Header ─────────────────────────────────── */
+.team__header {
+  max-width: 640px;
+  margin: 0 auto 48px;
+  text-align: center;
+}
+
+.team__eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent-dark);
+  margin-bottom: 12px;
+}
+
+.team__header h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0 0 14px;
+  letter-spacing: -0.3px;
+}
+
+.team__header p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* ── Grid ───────────────────────────────────── */
+.team__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 56px;
+}
+
+.team__card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 28px 24px;
+  text-align: center;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.team__card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.team__avatar {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--accent);
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.team__photo {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--border);
+}
+
+/* ── Loading / empty / error states ─────────── */
+.team__status {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  padding: 48px 24px;
+  margin-bottom: 56px;
+  background: var(--off-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.team__card--skeleton {
+  cursor: default;
+}
+
+.team__avatar--skeleton {
+  background: var(--light-gray);
+  animation: team-pulse 1.4s ease-in-out infinite;
+}
+
+.team__skeleton-line {
+  height: 12px;
+  border-radius: 6px;
+  background: var(--light-gray);
+  margin: 0 auto 10px;
+  width: 60%;
+  animation: team-pulse 1.4s ease-in-out infinite;
+}
+
+.team__skeleton-line--wide {
+  width: 80%;
+  height: 16px;
+}
+
+@keyframes team-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.team__card h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin: 0 0 4px;
+}
+
+.team__role {
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--accent-dark);
+  margin-bottom: 14px;
+}
+
+.team__bio {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+  margin: 0 0 18px;
+}
+
+.team__socials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.team__socials a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  background: var(--off-white);
+  border: 1px solid var(--border);
+  color: var(--primary);
+  transition: background var(--transition), color var(--transition);
+}
+
+.team__socials a:hover {
+  background: var(--primary);
+  color: white;
+}
+
+/* ── CTA ────────────────────────────────────── */
+.team__cta {
+  text-align: center;
+  background: var(--off-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 48px 24px;
+}
+
+.team__cta h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0 0 8px;
+}
+
+.team__cta p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin: 0 0 24px;
+}
+
+/* ── Responsive ─────────────────────────────── */
+@media (max-width: 960px) {
+  .team__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .team {
+    padding: 40px 0 64px;
+  }
+
+  .team__header h1 {
+    font-size: 1.7rem;
+  }
+
+  .team__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .team__cta {
+    padding: 36px 20px;
+  }
+}
